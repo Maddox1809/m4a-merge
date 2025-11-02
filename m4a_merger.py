@@ -14,7 +14,7 @@ import re
 
 
 def check_ffmpeg():
-    """Check if FFmpeg is available on the system."""
+    """Check if FFmpeg is available on the system"""
     try:
         result = subprocess.run(['ffmpeg', '-version'], 
                               capture_output=True, text=True, timeout=10)
@@ -24,7 +24,7 @@ def check_ffmpeg():
 
 
 def natural_sort_key(text):
-    """Natural sorting key for filenames like media1.m4a, media2.m4a, media10.m4a."""
+    """Natural sorting key for filenames like media1.m4a, media2.m4a, media10.m4a in digit order."""
     if isinstance(text, Path):
         text = text.name
     return [int(c) if c.isdigit() else c for c in re.split(r'(\d+)', text)]
@@ -110,7 +110,7 @@ def main():
         description="Merge multiple M4A files into one using FFmpeg",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
+Example :
   python m4a_merger.py --input basemedia/ --output merged.m4a
   python m4a_merger.py -i ./audio -o result.m4a
   
